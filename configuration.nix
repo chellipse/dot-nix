@@ -43,11 +43,11 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -85,8 +85,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      kate
-    #  thunderbird
     ];
   };
 
@@ -97,8 +95,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # The Nano editor is also installed by default.
-    wget
     git
+    wget
     neovim
     xclip
     wl-clipboard
@@ -106,6 +104,7 @@
     signal-desktop
     jq
     bc # weather.sh dep
+    keepassxc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
