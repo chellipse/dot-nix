@@ -46,6 +46,7 @@
             };
           in {
             environment.systemPackages = with pkgs; [
+              rustup
               cmatrix
               ranger
               zathura
@@ -58,6 +59,8 @@
               xdg-utils
               glib
               dracula-theme
+              dracula-icon-theme
+              # gtk3
               gnome3.adwaita-icon-theme
               swaylock
               swayidle
@@ -77,8 +80,9 @@
             ];
 
             fonts = {
-              enableDefaultFonts = true;
+              enableDefaultFonts = false;
               fonts = with pkgs; [
+                dejavu_fonts
                 iosevka
                 noto-fonts
                 noto-fonts-cjk
@@ -87,17 +91,28 @@
                 noto-fonts-lgc-plus
                 font-awesome
                 font-awesome_4
-                takao
               ];
+
+              fontconfig = {
+                defaultFonts = {
+                  serif = [ "Noto Serif" "DejaVu Serif" ];
+                  sansSerif = [ "Noto Sans" "DejaVu Sans" ];
+                  monospace = [ "DejaVu Sans Mono" "Noto Sans Mono" ];
+                  emoji = [ "Noto Color Emoji" ];
+                };
+              };
             };
 
-            services.pipewire = {
-              enable = true;
-              alsa.enable = true;
-              pulse.enable = true;
+            services = {
+              pipewire = {
+                enable = true;
+                alsa.enable = true;
+                pulse.enable = true;
+              };
+              dbus.enable = true;
+              udisks2.enable = true;
             };
 
-            services.dbus.enable = true;
             xdg.portal = {
               enable = true;
               wlr.enable = true;
@@ -105,15 +120,21 @@
               extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
             };
 
-            programs.sway = {
-              enable = true;
-              wrapperFeatures.gtk = true;
+            programs = {
+              sway = {
+                enable = true;
+                wrapperFeatures.gtk = true;
+              };
+              nm-applet = {
+                enable = true;
+              };
+              gnome-disks = {
+                enable = true;
+              };
+              dconf = {
+                enable = true;
+              };
             };
-
-            programs.nm-applet = {
-              enable = true;
-            };
-
           })
         ];
       };

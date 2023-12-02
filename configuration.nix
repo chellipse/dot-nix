@@ -98,6 +98,7 @@
     git
     wget
     neovim
+    ripgrep
     xclip
     wl-clipboard
     nodejs
