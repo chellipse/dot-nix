@@ -22,7 +22,15 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
+
+  networking.networkmanager = {
+    enable = true;
+    unmanaged = [ "interface-name:wlan*" "interface-name:eth*" ];
+  };
+
+  # Gnome Keyring
+  # services.gnome.gnome-keyring.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -81,7 +89,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.chelll = {
     isNormalUser = true;
-    description = "Chell Laszlo";
+    description = "Chell";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
