@@ -6,6 +6,33 @@
   home.username = "chelll";
   home.homeDirectory = "/home/chelll";
 
+  gtk = {
+    enable = true;
+    gtk3.extraConfig = {
+      # gtk-application-prefer-dark-theme = true;
+      gtk-application-prefer-dark-theme=0;
+    };
+    gtk4.extraConfig = {
+      # gtk-application-prefer-dark-theme = true;
+      gtk-application-prefer-dark-theme=0;
+    };
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
+    iconTheme = {
+      name = "Dracula";
+      package = pkgs.dracula-icon-theme;
+    };
+  };
+
+  # services = {
+  #   xsettingsd = {
+  #     enable = true;
+  #     package = pkgs.xsettingsd;
+  #   };
+  # };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
