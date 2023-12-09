@@ -6,14 +6,77 @@
   home.username = "chelll";
   home.homeDirectory = "/home/chelll";
 
-  gtk = {
-    enable = true;
-    gtk3.extraConfig = {
-      # gtk-application-prefer-dark-theme = true;
+  programs = {
+    alacritty = {
+      enable = true;
+      package = pkgs.alacritty;
+      settings = {
+        window = {
+          padding = {
+            x = 8;
+            y = 12;
+          };
+          opacity = 1.0;
+        };
+        font = {
+          normal = {
+            family = "Iosevka Extended Oblique";
+            style = "Regular";
+          };
+          bold = {
+            style = "Bold";
+          };
+          italic = {
+            style = "Italic";
+          };
+          bold_italic = {
+            style = "Bold Italic";
+          };
+          size = 12;
+        };
+        colors = {
+          transparent_background_colors = false;
+          draw_bold_text_with_bright_colors = true;
+        };
+      };
+    };
+    neovim = {
+      enable = false;
+      withNodeJs = true;
+      coc = {
+        enable = false;
+        package = pkgs.vimPlugins.coc-nvim;
+        settings = {
+          markdownlint.config = {
+            MD013 = false;
+          };
+        };
+      };
+      extraConfig = ''
+        ${builtins.readFile ./nvim/init.vim}
+      '';
+    };
+  };
+
+  services = {
+    mako = {
+      enable = true;
+      extraConfig = ''
+        ${builtins.readFile ./mako/config}
+      '';
+    };
+  #   xsettingsd = {
+  #     enable = true;
+  #     package = pkgs.xsettingsd;
+  #   };
+};
+
+gtk = {
+  enable = true;
+  gtk3.extraConfig = {
       gtk-application-prefer-dark-theme=0;
     };
     gtk4.extraConfig = {
-      # gtk-application-prefer-dark-theme = true;
       gtk-application-prefer-dark-theme=0;
     };
     theme = {
@@ -26,21 +89,7 @@
     };
   };
 
-  # services = {
-  #   xsettingsd = {
-  #     enable = true;
-  #     package = pkgs.xsettingsd;
-  #   };
-  # };
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
+  # only change if you've checked all the state version changes!
   home.stateVersion = "23.11";
 
   # Let Home Manager install and manage itself.

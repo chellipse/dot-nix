@@ -22,6 +22,7 @@
           (./core.nix)
           (./daily.nix)
           (./sway.nix)
+          (./rust.nix)
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -36,8 +37,14 @@
 
         modules = [
           (./core.nix)
-          (./hello.nix)
-          (./sway.nix)
+          (./daily.nix)
+          (./hyperland.nix)
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.chelll = import ./home.nix;
+          }
         ];
       };
 

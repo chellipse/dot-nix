@@ -51,12 +51,23 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.chelll = {
-    isNormalUser = true;
-    description = "Chell";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
+  users.users = {
+    chelll = {
+      isNormalUser = true;
+      description = "Chell";
+      extraGroups = [ "networkmanager" "wheel" ];
+      packages = with pkgs; [
+        firefox
+      ];
+    };
+    chell = {
+      isNormalUser = true;
+      description = "Chell";
+      extraGroups = [ "networkmanager" "wheel" ];
+      packages = with pkgs; [
+        firefox
+      ];
+    };
   };
 
   # Allow unfree packages
@@ -65,7 +76,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    firefox
     vim # The Nano editor is also installed by default.
     git
     vivaldi
@@ -74,23 +84,23 @@ in
     keepassxc
     wget
     neovim
-    ripgrep
+    ripgrep # nvim
     xclip
-    wl-clipboard
-    nodejs
-    jq
+    wl-clipboard # nvim
+    nodejs # nvim
+    jq # weather.sh dep
     bc # weather.sh dep
     gparted
     kitty
-    gnome.gnome-tweaks
-    gnome.gnome-shell
-    gnome.gnome-themes-extra
-    gtk-engine-murrine
-    gtk3
-    gtk4
+    # gnome.gnome-tweaks
+    # gnome.gnome-shell
+    # gnome.gnome-themes-extra
+    # gtk-engine-murrine
+    # gtk3
+    # gtk4
     python3
     # xsettingsd
-    solarc-gtk-theme
+    # solarc-gtk-theme
     dracula-theme
     dracula-icon-theme
   ];

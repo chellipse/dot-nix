@@ -8,12 +8,24 @@
     };
   };
 
+  services = {
+    gvfs.enable = true;
+    gvfs.package = pkgs.gnome.gvfs;
+  };
+
   environment = {
     variables = {
       TEST = "RESULT";
     };
     systemPackages = with pkgs; [
-      rustup
+      gimp-with-plugins
+      gnome2.pango
+      vlc
+      gnome.nautilus
+      samba
+      samba4Full
+      tree
+      neofetch
       cmatrix
       ranger
       zathura
@@ -21,6 +33,7 @@
       alacritty # terminal :3
       kitty # terminal<3
       libnotify # includes notify-send
+      # webp
     ];
   };
 

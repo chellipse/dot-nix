@@ -8,14 +8,15 @@
     glib
     swaylock
     swayidle
+    swaybg
     slurp # screenshot pt1
     grim # screenshot pt2, the screenshot returns (to your ~/Pictures/Screenshots folder)
     wl-clipboard
     bemenu # wayland dmenu
     mako # notif daemon
     wdisplays
-    # dunst
     i3status-rust
+    pulseaudioFull # required for sway binds
   ];
 
   fonts = {
@@ -35,7 +36,6 @@
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [
-      pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
     ];
   };
