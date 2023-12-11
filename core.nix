@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
 in
@@ -50,6 +50,13 @@ in
     udisks2.enable = true;
   };
 
+  security.sudo = {
+    wheelNeedsPassword = true;
+    extraRules = [
+      { groups = [ "wheel" ]; commands = [ { command = "/etc/validate/validate-sudo"; options = [ "NOPASSWD" ]; } ]; }
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     chelll = {
@@ -57,15 +64,15 @@ in
       description = "Chell";
       extraGroups = [ "networkmanager" "wheel" ];
       packages = with pkgs; [
-        firefox
       ];
     };
-    chell = {
+    hello = {
       isNormalUser = true;
-      description = "Chell";
-      extraGroups = [ "networkmanager" "wheel" ];
+      description = "Hello";
+      extraGroups = [ "wheel" ];
       packages = with pkgs; [
         firefox
+        hello
       ];
     };
   };
@@ -75,38 +82,45 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # The Nano editor is also installed by default.
-    git
-    vivaldi
-    signal-desktop
-    discord
-    keepassxc
-    wget
-    neovim
-    ripgrep # nvim
-    xclip
-    wl-clipboard # nvim
-    nodejs # nvim
-    jq # weather.sh dep
-    bc # weather.sh dep
-    gparted
-    kitty
-    # gnome.gnome-tweaks
-    # gnome.gnome-shell
-    # gnome.gnome-themes-extra
-    # gtk-engine-murrine
-    # gtk3
-    # gtk4
-    python3
-    # xsettingsd
-    # solarc-gtk-theme
-    dracula-theme
-    dracula-icon-theme
-  ];
+  environment = {
+    variables = {
+      LD_PRELOAD = "/usr/local/lib/libwlbouncer-preload.so";
+      BOUNCER_CONFIG = "/etc/validate/wlbouncer.yaml";
+      # BOUNCER_DEBUG = "value";
+    };
+    systemPackages = with pkgs; [
+      vim # The Nano editor is also installed by default.
+      git
+      vivaldi
+      signal-desktop
+      discord
+      keepassxc
+      wget
+      neovim
+      helix
+      ripgrep # nvim
+      xclip
+      wl-clipboard # nvim
+      nodejs # nvim
+      jq # weather.sh dep
+      bc # weather.sh dep
+      gparted
+      kitty
+      gnome.gnome-tweaks
+      python3
+      dracula-theme
+      dracula-icon-theme
+      emacs
+      coreutils
+      fd
+      clang
+      gnome.zenity
+      pkgs-unstable.eza
+    ];
+  };
 
   fonts = {
-    enableDefaultPackages = false;
+    enableDefaultPackages = true;
     packages = with pkgs; [
       dejavu_fonts
       iosevka
@@ -116,12 +130,17 @@ in
     ];
 
     fontconfig = {
+      enable = true;
       defaultFonts = {
         serif = [ "Noto Serif" "DejaVu Serif" ];
         sansSerif = [ "Noto Sans" "DejaVu Sans" ];
         monospace = [ "DejaVu Sans Mono" "Noto Sans Mono" ];
         emoji = [ "Noto Color Emoji" ];
       };
+    };
+    fontDir = {
+      enable = true;
+      decompressFonts = true;
     };
   };
 

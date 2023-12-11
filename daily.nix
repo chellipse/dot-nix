@@ -18,6 +18,8 @@
       TEST = "RESULT";
     };
     systemPackages = with pkgs; [
+      qbittorrent
+      inkscape
       gimp-with-plugins
       gnome2.pango
       vlc

@@ -3,6 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
     wayland
+    wayland-utils
+    wayland-protocols
+    yaml-cpp
     xwayland
     xdg-utils
     glib
@@ -20,7 +23,6 @@
   ];
 
   fonts = {
-    enableDefaultPackages = false;
     packages = with pkgs; [
       font-awesome
       font-awesome_4
@@ -50,6 +52,22 @@
     };
     dconf = {
       enable = true;
+    };
+    regreet = {
+      enable = true;
+      settings = {
+        background = {
+          path = "/home/chelll/.config/sway/backgrounds/nixos/nix-wallpaper-dracula.png";
+          fit = "Cover";
+        };
+        GTK = {
+          application_prefer_dark_theme = true;
+          font_name = "Noto Sans 12";
+          cursor_theme_name = "Bibata-Original-Ice";
+          icon_theme_name = "Dracula";
+          theme_name = "Dracula";
+        };
+      };
     };
   };
 }

@@ -37,6 +37,35 @@
         colors = {
           transparent_background_colors = false;
           draw_bold_text_with_bright_colors = true;
+          # Default colors
+          primary = {
+            background  = "#2D2A2E" ;
+            foreground  = "#fff1f3" ;
+          };
+
+          # Normal colors
+          normal = {
+            black  =   "#2c2525" ;
+            red  =     "#fd6883" ;
+            green  =   "#adda78" ;
+            yellow  =  "#f9cc6c" ;
+            blue  =    "#f38d70" ;
+            magenta  = "#a8a9eb" ;
+            cyan  =    "#85dacc" ;
+            white  =   "#fff1f3" ;
+          };
+
+          # Bright colors
+          bright = {
+            black  =   "#72696a" ;
+            red  =     "#fd6883" ;
+            green  =   "#adda78" ;
+            yellow  =  "#f9cc6c" ;
+            blue  =    "#f38d70" ;
+            magenta  = "#a8a9eb" ;
+            cyan  =    "#85dacc" ;
+            white  =   "#fff1f3" ;
+          };
         };
       };
     };
@@ -56,6 +85,15 @@
         ${builtins.readFile ./nvim/init.vim}
       '';
     };
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
   };
 
   services = {
@@ -65,10 +103,6 @@
         ${builtins.readFile ./mako/config}
       '';
     };
-  #   xsettingsd = {
-  #     enable = true;
-  #     package = pkgs.xsettingsd;
-  #   };
 };
 
 gtk = {
@@ -87,6 +121,17 @@ gtk = {
       name = "Dracula";
       package = pkgs.dracula-icon-theme;
     };
+    cursorTheme = {
+      name = "Bibata-Original-Ice";
+      package = pkgs.bibata-cursors;
+    };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Original-Ice";
+    size = 16;
   };
 
   # only change if you've checked all the state version changes!
