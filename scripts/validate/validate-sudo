@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# This script displays a visual yes/no prompt to authorize sudo commands, instead of the normal password
+
+# To use:
+# 1. copy it to /usr/local/bin/validate-sudo (or somewhere else in your path)
+# 2. add `alias sudo="sudo validate-sudo"` to your .bashrc
+# 3. add something like this to your sudoers file (note that some distros may use a group other than wheel):
+#    %wheel ALL=(ALL:ALL) NOPASSWD: /usr/local/bin/validate-sudo
+# 4. you may have to tweak the display env vars if your compositor isn't running as root on WAYLAND-1
+# 5. log in and test to make sure it works
+# 5. remove any authorizations in your sudoers file that this replaces
+
+# WARNING: always have another way of accessing the root account, as this script could break for any number of reasons
+# WARNING: on most X11 and Wayland setups, an attacker with access to the display server can spoof input to authorize the prompt,
+#          see https://github.com/wmww/wlbouncer/ for a means of preventing this on Wayland
+
+
+export WAYLAND_DISPLAY=wayland-1
+export XDG_RUNTIME_DIR=/run/user/1000
+
+MESSAGE='<tt><span size="large" weight="bold">'"$@"'</span></tt>'
+if /run/current-system/sw/bin/zenity --question --text="$MESSAGE" --icon utilities-terminal --title "Run as $USER?"; then
+    "$@"
+else
+    echo "User denied sudo :(" 1>&2
+    exit 1
+fi

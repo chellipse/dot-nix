@@ -6,6 +6,9 @@
       enable = true;
       xwayland.enable = true;
     };
+    waybar = {
+      enable = true;
+    };
   };
 
   environment = {
@@ -13,7 +16,7 @@
       NIXOS_OZONE_WL = "1";
     };
     systemPackages = with pkgs; [
-      waybar
+      swaybg
       bemenu # wayland dmenu
       mako # notif daemon
     ];

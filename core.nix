@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
 in
@@ -50,13 +50,6 @@ in
     udisks2.enable = true;
   };
 
-  security.sudo = {
-    wheelNeedsPassword = true;
-    extraRules = [
-      { groups = [ "wheel" ]; commands = [ { command = "/etc/validate/validate-sudo"; options = [ "NOPASSWD" ]; } ]; }
-    ];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     chelll = {
@@ -84,9 +77,7 @@ in
   # $ nix search wget
   environment = {
     variables = {
-      LD_PRELOAD = "/usr/local/lib/libwlbouncer-preload.so";
-      BOUNCER_CONFIG = "/etc/validate/wlbouncer.yaml";
-      # BOUNCER_DEBUG = "value";
+      TEST = "${./. + "/configs/nvim"}";
     };
     systemPackages = with pkgs; [
       vim # The Nano editor is also installed by default.
@@ -115,7 +106,6 @@ in
       fd
       clang
       gnome.zenity
-      pkgs-unstable.eza
     ];
   };
 
@@ -127,6 +117,7 @@ in
       noto-fonts
       noto-fonts-emoji
       noto-fonts-lgc-plus
+      nerdfonts
     ];
 
     fontconfig = {

@@ -13,6 +13,7 @@
   let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
+    FLAKE_DIR = "/home/chelll/dot-nix";
   in {
     nixosConfigurations = {
 
@@ -26,9 +27,12 @@
         };
 
         modules = [
+          (./secure.nix)
           (./core.nix)
+          (./unstable.nix)
           (./daily.nix)
           (./sway.nix)
+          (./hyperland.nix)
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

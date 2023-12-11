@@ -1,0 +1,65 @@
+version: 0
+policy:
+  - enable-only:
+    - wl_shm
+    # - wl_drm
+    # - zwp_linux_dmabuf_v1
+    - wl_compositor
+    - wl_subcompositor
+    - wl_data_device_manager
+    # - zwlr_gamma_control_manager_v1
+    - zxdg_output_manager_v1
+    - org_kde_kwin_idle
+    - ext_idle_notifier_v1
+    - zwp_idle_inhibit_manager_v1
+    # - zwlr_layer_shell_v1
+    - xdg_wm_base
+    - zwp_tablet_manager_v2
+    - org_kde_kwin_server_decoration_manager
+    - zxdg_decoration_manager_v1
+    - zwp_relative_pointer_manager_v1
+    - zwp_pointer_constraints_v1
+    - wp_presentation
+    # - zwlr_output_manager_v1
+    # - zwlr_output_power_manager_v1
+    # - zwp_input_method_manager_v2
+    - zwp_text_input_manager_v3
+    # - zwlr_foreign_toplevel_manager_v1
+    # - ext_session_lock_manager_v1
+    # - wp_drm_lease_device_v1
+    # - zwlr_export_dmabuf_manager_v1
+    # - zwlr_screencopy_manager_v1
+    # - zwlr_data_control_manager_v1
+    - zwp_primary_selection_device_manager_v1
+    - wp_viewporter
+    - wp_single_pixel_buffer_manager_v1
+    # - zxdg_exporter_v1
+    # - zxdg_importer_v1
+    # - zxdg_exporter_v2
+    # - zxdg_importer_v2
+    - xdg_activation_v1
+    # - zwp_virtual_keyboard_manager_v1
+    # - zwlr_virtual_pointer_manager_v1
+    # - zwlr_input_inhibit_manager_v1
+    # - zwp_keyboard_shortcuts_inhibit_manager_v1
+    - wl_seat
+    # - zwp_pointer_gestures_v1
+    - wl_output
+
+  - user: root
+    enable: all
+
+  - user: chelll
+    enable:
+    - wl_drm
+    - zwp_pointer_gestures_v1
+    - zwlr_screencopy_manager_v1 # Needed for xdg-desktop-portal-wlr
+    - zwlr_layer_shell_v1 # Needed for xdg-desktop-portal-wlr (for some reason??)
+    - zwp_linux_dmabuf_v1 # Perhaps useful for xdg-desktop-portal-wlr
+    - wp_drm_lease_device_v1 # Perhaps useful for xdg-desktop-portal-wlr
+
+  - user: hello
+    enable:
+    - wl_drm
+    - wp_drm_lease_device_v1
+

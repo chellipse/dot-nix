@@ -82,7 +82,7 @@
         };
       };
       extraConfig = ''
-        ${builtins.readFile ./nvim/init.vim}
+        ${builtins.readFile ./configs/nvim/init.vim}
       '';
     };
     zsh = {
@@ -94,13 +94,118 @@
       enableZshIntegration = true;
       enableBashIntegration = true;
     };
+    waybar = {
+      enable = true;
+      settings = {
+        mainBar = {
+          layer = "top";
+          position = "bottom";
+          height = 35;
+          margin = "7 7 3 7";
+          spacing = 2;
+
+          modules-left = [ "custom/os" "custom/hyprprofile" "battery" "backlight" "pulseaudio" "cpu" "memory" ];
+          modules-center = [ "hyprland/workspaces" ];
+          modules-right = [ "idle_inhibitor" "tray" "clock" ];
+
+          "custom/os" = {
+            "format" = " {} ";
+            "exec" = ''echo "" '';
+            "interval" = "once";
+          };
+          "hyprland/workspaces" = {
+            "format" = "{icon}";
+            "format-icons" = {
+              "1" = "󰖟";
+              "2" = "";
+              "3" = "";
+              "4" = "";
+              "5" = "";
+              "6" = "";
+              "7" = "";
+              "8" = "";
+              # "scratch_term" = "_";
+              # "scratch_ranger" = "_󰴉";
+              # "scratch_musikcube" = "_";
+              # "scratch_btm" = "_";
+              # "scratch_geary" = "_";
+              # "scratch_pavucontrol" = "_󰍰";
+            };
+            "on-click" = "activate";
+            # "on-scroll-up" = "hyprctl dispatch workspace e+1";
+            # "on-scroll-down" = "hyprctl dispatch workspace e-1";
+          # "ignore-workspaces" = ["scratch" "-"];
+        };
+
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰅶";
+            deactivated = "󰾪";
+          };
+        };
+        tray = {
+          "icon-size" = 21;
+          "spacing" = 10;
+        };
+        clock = {
+          "interval" = 1;
+          "format" = "{:%a %Y-%m-%d %I:%M:%S %p}";
+          "timezone" = "America/NewYork";
+          "tooltip-format" = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
+          };
+          cpu = {
+            "format" = "{usage}% ";
+          };
+          memory = { "format" = "{}% "; };
+          backlight = {
+            "format" = "{percent}% {icon}";
+            "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
+          };
+          battery = {
+            "states" = {
+              "good" = 95;
+              "warning" = 30;
+              "critical" = 15;
+            };
+            "format" = "{capacity}% {icon}";
+            "format-charging" = "{capacity}% ";
+            "format-plugged" = "{capacity}% ";
+          #"format-good" = ""; # An empty format will hide the module
+          #"format-full" = "";
+          "format-icons" = [ "" "" "" "" "" ];
+        };
+        pulseaudio = {
+          "scroll-step" = 1;
+          "format" = "{volume}% {icon}  {format_source}";
+          "format-bluetooth" = "{volume}% {icon}  {format_source}";
+          "format-bluetooth-muted" = "󰸈 {icon}  {format_source}";
+          "format-muted" = "󰸈 {format_source}";
+          "format-source" = "{volume}% ";
+          "format-source-muted" = " ";
+          "format-icons" = {
+            "headphone" = "";
+            "hands-free" = "";
+            "headset" = "";
+            "phone" = "";
+            "portable" = "";
+            "car" = "";
+            "default" = [ "" "" "" ];
+          };
+          "on-click" = "pypr toggle pavucontrol && hyprctl dispatch bringactivetotop";
+        };
+      };
+    };
   };
+};
 
   services = {
     mako = {
       enable = true;
       extraConfig = ''
-        ${builtins.readFile ./mako/config}
+        ${builtins.readFile ./configs/mako/config}
       '';
     };
 };

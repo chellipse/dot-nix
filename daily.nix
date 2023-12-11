@@ -14,10 +14,10 @@
   };
 
   environment = {
-    variables = {
-      TEST = "RESULT";
-    };
+    # variables = {
+    # };
     systemPackages = with pkgs; [
+      ffmpeg
       qbittorrent
       inkscape
       gimp-with-plugins
