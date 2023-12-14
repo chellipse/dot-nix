@@ -29,7 +29,7 @@ progress-color=source #ff2020ff
 
 max-history=16
 
-default-timeout=15
+default-timeout=15000
 ignore-timeout=0
 
 max-visible=8

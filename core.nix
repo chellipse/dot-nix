@@ -12,6 +12,26 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    accept-flake-config = true;
+    warn-dirty = false;
+    auto-optimise-store = true;
+    keep-derivations = true;
+    log-lines = 10;
+    max-jobs = "auto";
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  nix.optimise = {
+    automatic = true;
+    dates = [ "02:30" "22:30" ];
+  };
+
   networking.hostName = "daily"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -113,11 +133,9 @@ in
     enableDefaultPackages = true;
     packages = with pkgs; [
       dejavu_fonts
-      iosevka
       noto-fonts
       noto-fonts-emoji
       noto-fonts-lgc-plus
-      nerdfonts
     ];
 
     fontconfig = {
@@ -148,6 +166,5 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   security.polkit.enable = true;
 }

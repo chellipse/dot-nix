@@ -31,11 +31,11 @@
       cmatrix
       ranger
       zathura
-      cinnamon.nemo # files
+      cinnamon.nemo-with-extensions # files
       alacritty # terminal :3
       kitty # terminal<3
       libnotify # includes notify-send
-      # webp
+      libwebp
     ];
   };
 

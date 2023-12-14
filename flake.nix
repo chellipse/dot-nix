@@ -33,6 +33,7 @@
           (./daily.nix)
           (./sway.nix)
           (./hyperland.nix)
+          (./rust.nix)
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

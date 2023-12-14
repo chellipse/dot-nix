@@ -20,6 +20,7 @@
     wdisplays
     i3status-rust
     pulseaudioFull # required for sway binds
+    networkmanagerapplet
   ];
 
   fonts = {
@@ -57,7 +58,7 @@
       enable = true;
       settings = {
         background = {
-          path = "/home/chelll/.config/sway/backgrounds/nixos/nix-wallpaper-dracula.png";
+          path = "/home/chelll/.config/sway/backgrounds/nixos/nix-wallpaper-simple-blue.png";
           fit = "Cover";
         };
         GTK = {
