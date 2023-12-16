@@ -27,13 +27,13 @@
         };
 
         modules = [
-          (./secure.nix)
-          (./core.nix)
-          (./unstable.nix)
-          (./daily.nix)
-          (./sway.nix)
-          (./hyperland.nix)
-          (./rust.nix)
+          (./core.nix) # required setup
+          (./secure.nix) # security stuff
+          (./unstable.nix) # pkgs-unstable
+          (./daily.nix) # daily use packages
+          (./sway.nix) # sway setup
+          (./hyperland.nix) # hyprland setup
+          (./rust.nix) # global rust stuff
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

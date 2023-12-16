@@ -19,18 +19,18 @@ in
     auto-optimise-store = true;
     keep-derivations = true;
     log-lines = 10;
-    max-jobs = "auto";
+    # max-jobs = "auto";
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
-  nix.optimise = {
-    automatic = true;
-    dates = [ "02:30" "22:30" ];
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 30d";
+  # };
+  # nix.optimise = {
+  #   automatic = true;
+  #   dates = [ "02:30" "22:30" ];
+  # };
 
   networking.hostName = "daily"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
