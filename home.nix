@@ -20,7 +20,7 @@
         };
         font = {
           normal = {
-            family = "Iosevka Extended Oblique";
+            family = "Iosevka Pro Extended";
             style = "Regular";
           };
           bold = {
@@ -35,36 +35,35 @@
           size = 12;
         };
         colors = {
-          transparent_background_colors = false;
-          draw_bold_text_with_bright_colors = true;
+          transparent_background_colors = true;
+          draw_bold_text_with_bright_colors = false;
           # Default colors
           primary = {
-            background  = "#2D2A2E" ;
-            foreground  = "#fff1f3" ;
+            background  = "#181818" ;
+            foreground  = "#d8d8d8" ;
           };
-
           # Normal colors
           normal = {
-            black  =   "#2c2525" ;
-            red  =     "#fd6883" ;
-            green  =   "#adda78" ;
-            yellow  =  "#f9cc6c" ;
-            blue  =    "#f38d70" ;
-            magenta  = "#a8a9eb" ;
-            cyan  =    "#85dacc" ;
-            white  =   "#fff1f3" ;
+            black  =   "#181818" ;
+            red  =     "#ab4642" ;
+            green  =   "#a1b56c" ;
+            yellow  =  "#f7ca88" ;
+            blue  =    "#7cafc2" ;
+            magenta  = "#ba8baf" ;
+            cyan  =    "#86c1b9" ;
+            white  =   "#d8d8d8" ;
           };
 
           # Bright colors
           bright = {
-            black  =   "#72696a" ;
-            red  =     "#fd6883" ;
-            green  =   "#adda78" ;
-            yellow  =  "#f9cc6c" ;
-            blue  =    "#f38d70" ;
-            magenta  = "#a8a9eb" ;
-            cyan  =    "#85dacc" ;
-            white  =   "#fff1f3" ;
+            black  =   "#585858" ;
+            red  =     "#ab4642" ;
+            green  =   "#a1b56c" ;
+            yellow  =  "#f7ca88" ;
+            blue  =    "#7cafc2" ;
+            magenta  = "#ba8baf" ;
+            cyan  =    "#86c1b9" ;
+            white  =   "#f8f8f8" ;
           };
         };
       };
@@ -208,6 +207,10 @@
         ${builtins.readFile ./configs/mako/config}
       '';
     };
+    # mpd-mpris = {
+    #   enable = true;
+    #   enableDefaultInstance = true;
+    # };
 };
 
 gtk = {

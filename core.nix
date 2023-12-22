@@ -19,7 +19,8 @@ in
     auto-optimise-store = true;
     keep-derivations = true;
     log-lines = 10;
-    # max-jobs = "auto";
+    max-jobs = 2;
+    cores = 2;
   };
 
   # nix.gc = {
@@ -68,6 +69,24 @@ in
       pulse.enable = true;
     };
     udisks2.enable = true;
+    mpd = {
+      enable = true;
+      startWhenNeeded = true;
+      musicDirectory = "/home/chelll/Music/";
+      extraConfig = ''
+        music_directory "/home/chelll/Music/"
+        audio_output {
+          type            "alsa"
+          name            "My ALSA Device"
+          device          "hw:0,0" # optional
+          format          "44100:16:2" # optional
+          mixer_type      "hardware"
+          mixer_device    "default"
+          mixer_control   "PCM"
+        }
+      '';
+      user = "chelll";
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -89,6 +108,8 @@ in
       ];
     };
   };
+
+  programs.htop.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -126,6 +147,11 @@ in
       fd
       clang
       gnome.zenity
+      mpd
+      mpc_cli
+      # vimpc
+      # mpdris2 # let's i3status-rust see mpd info
+      # mpd-mpris
     ];
   };
 

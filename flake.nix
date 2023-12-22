@@ -33,7 +33,7 @@
           (./daily.nix) # daily use packages
           (./sway.nix) # sway setup
           (./hyperland.nix) # hyprland setup
-          (./rust.nix) # global rust stuff
+          (./lang.nix) # global lang stuff
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

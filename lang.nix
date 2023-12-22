@@ -3,6 +3,7 @@
 {
   environment = {
     systemPackages = with pkgs; [
+      # Rust
       gcc
       rustc
       cargo
@@ -10,6 +11,8 @@
       rustup
       rustfmt
       clippy
+      # C++
+      clang
     ];
   };
 }

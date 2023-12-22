@@ -17,16 +17,20 @@
     # variables = {
     # };
     systemPackages = with pkgs; [
+      anki
+      dropbox
+      dropbox-cli
+      calc
       ffmpeg
       qbittorrent
-      inkscape
+      # inkscape
       gimp-with-plugins
       gnome2.pango
       vlc
       gnome.nautilus
       samba
       samba4Full
-      tree
+      # tree
       neofetch
       cmatrix
       ranger

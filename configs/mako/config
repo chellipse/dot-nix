@@ -1,12 +1,12 @@
 
 # Default: invoke-default-action
-on-button-left=invoke-default-action
+on-button-left=dismiss
 
 # Default: none
 on-button-middle=dismiss-all
 
 # Default: dismiss
-on-button-right=dismiss
+on-button-right=invoke-default-action
 
 
 font=Noto Sans 13

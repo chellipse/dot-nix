@@ -5,7 +5,7 @@
     wayland
     wayland-utils
     wayland-protocols
-    yaml-cpp
+    yaml-cpp # needed for wl-bouncer
     xwayland
     xdg-utils
     glib
@@ -20,13 +20,13 @@
     wdisplays
     i3status-rust
     pulseaudioFull # required for sway binds
-    networkmanagerapplet
+    networkmanagerapplet # encludes bin/nm-applet
   ];
 
   fonts = {
     packages = with pkgs; [
-      font-awesome
-      font-awesome_4
+      font-awesome # over lapping icons with nerdfonts
+      font-awesome_4 # over lapping icons with nerdfonts
     ];
   };
 
