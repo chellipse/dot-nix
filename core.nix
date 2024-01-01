@@ -19,7 +19,7 @@ in
     auto-optimise-store = true;
     keep-derivations = true;
     log-lines = 10;
-    max-jobs = 2;
+    max-jobs = 4;
     cores = 2;
   };
 
@@ -118,7 +118,9 @@ in
   # $ nix search wget
   environment = {
     variables = {
-      TEST = "${./. + "/configs/nvim"}";
+      FLAKE_DIR = "${./. + "/"}";
+      FS_DIR = "${./. + "/scripts/"}";
+      XDG_CONFIG_HOME = "$HOME/.config";
     };
     systemPackages = with pkgs; [
       vim # The Nano editor is also installed by default.
@@ -127,6 +129,8 @@ in
       signal-desktop
       discord
       keepassxc
+      bitwarden
+      bitwarden-cli
       wget
       neovim
       helix

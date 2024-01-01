@@ -38,7 +38,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.chelll = import ./home.nix;
+            home-manager.users.chelll = import ./home/home.nix;
           }
         ];
       };

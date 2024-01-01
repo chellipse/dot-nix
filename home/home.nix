@@ -1,10 +1,21 @@
 { config, pkgs, ... }:
 
-{
+let
+  colors = import ./colors/dracula.nix { };
+in
+  {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "chelll";
-  home.homeDirectory = "/home/chelll";
+  home = {
+    username = "chelll";
+    homeDirectory = "/home/chelll";
+    stateVersion = "23.11"; # only change if you've checked all the state version changes!
+  };
+
+  imports = [
+    (import ./neofetch.nix { inherit config colors; })
+    (import ./bash-nix.nix { inherit config; })
+  ];
 
   programs = {
     alacritty = {
@@ -39,31 +50,30 @@
           draw_bold_text_with_bright_colors = false;
           # Default colors
           primary = {
-            background  = "#181818" ;
-            foreground  = "#d8d8d8" ;
+            background  = colors.background ;
+            foreground  = colors.foreground ;
           };
           # Normal colors
           normal = {
-            black  =   "#181818" ;
-            red  =     "#ab4642" ;
-            green  =   "#a1b56c" ;
-            yellow  =  "#f7ca88" ;
-            blue  =    "#7cafc2" ;
-            magenta  = "#ba8baf" ;
-            cyan  =    "#86c1b9" ;
-            white  =   "#d8d8d8" ;
+            black   = colors.color0;
+            red     = colors.color1;
+            green   = colors.color2;
+            yellow  = colors.color3;
+            blue    = colors.color4;
+            magenta = colors.color5;
+            cyan    = colors.color6;
+            white   = colors.color7;
           };
-
           # Bright colors
           bright = {
-            black  =   "#585858" ;
-            red  =     "#ab4642" ;
-            green  =   "#a1b56c" ;
-            yellow  =  "#f7ca88" ;
-            blue  =    "#7cafc2" ;
-            magenta  = "#ba8baf" ;
-            cyan  =    "#86c1b9" ;
-            white  =   "#f8f8f8" ;
+            black   = colors.color8;
+            red     = colors.color9;
+            green   = colors.color10;
+            yellow  = colors.color11;
+            blue    = colors.color12;
+            magenta = colors.color13;
+            cyan    = colors.color14;
+            white   = colors.color15;
           };
         };
       };
@@ -200,22 +210,22 @@
   };
 };
 
-  services = {
-    mako = {
-      enable = true;
-      extraConfig = ''
+services = {
+  mako = {
+    enable = true;
+    extraConfig = ''
         ${builtins.readFile ./configs/mako/config}
-      '';
-    };
+    '';
+  };
     # mpd-mpris = {
     #   enable = true;
     #   enableDefaultInstance = true;
     # };
-};
+  };
 
-gtk = {
-  enable = true;
-  gtk3.extraConfig = {
+  gtk = {
+    enable = true;
+    gtk3.extraConfig = {
       gtk-application-prefer-dark-theme=0;
     };
     gtk4.extraConfig = {
@@ -241,9 +251,6 @@ gtk = {
     name = "Bibata-Original-Ice";
     size = 16;
   };
-
-  # only change if you've checked all the state version changes!
-  home.stateVersion = "23.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

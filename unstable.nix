@@ -3,7 +3,9 @@
 {
   environment.systemPackages = with pkgs-unstable; [
     eza
+    nixd
   ];
+
   fonts = {
     packages = with pkgs-unstable; [
       nerdfonts
