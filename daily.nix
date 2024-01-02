@@ -18,21 +18,21 @@
     # };
     systemPackages = with pkgs; [
       anki
-      dropbox
-      dropbox-cli
+      dropbox # requires dropbox-cli for control
+      dropbox-cli # used for dropbox
       calc
       ffmpeg
       qbittorrent
       # inkscape
       gimp-with-plugins
-      gnome2.pango
+      # gnome2.pango
       vlc
-      gnome.nautilus
-      samba
-      samba4Full
+      # gnome.nautilus
+      # samba
+      # samba4Full
       # tree
       neofetch
-      cmatrix
+      # cmatrix
       ranger
       zathura
       cinnamon.nemo-with-extensions # files

@@ -103,7 +103,6 @@ in
       description = "Hello";
       extraGroups = [ "wheel" ];
       packages = with pkgs; [
-        firefox
         hello
       ];
     };
@@ -125,6 +124,7 @@ in
     systemPackages = with pkgs; [
       vim # The Nano editor is also installed by default.
       git
+      firefox
       vivaldi
       signal-desktop
       discord
@@ -135,21 +135,21 @@ in
       neovim
       helix
       ripgrep # nvim
-      xclip
+      # xclip
       wl-clipboard # nvim
       nodejs # nvim
-      jq # weather.sh dep
-      bc # weather.sh dep
-      gparted
+      # jq # weather.sh dep
+      # bc # weather.sh dep
+      # gparted
       kitty
-      gnome.gnome-tweaks
-      python3
-      dracula-theme
-      dracula-icon-theme
-      emacs
-      coreutils
-      fd
-      clang
+      # gnome.gnome-tweaks
+      # python3
+      # dracula-theme
+      # dracula-icon-theme
+      # emacs
+      # coreutils
+      # fd
+      # clang
       gnome.zenity
       mpd
       mpc_cli

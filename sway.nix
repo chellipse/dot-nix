@@ -8,7 +8,7 @@
     yaml-cpp # needed for wl-bouncer
     xwayland
     xdg-utils
-    glib
+    # glib
     swaylock
     swayidle
     swaybg
@@ -17,7 +17,7 @@
     wl-clipboard
     bemenu # wayland dmenu
     mako # notif daemon
-    wdisplays
+    # wdisplays
     i3status-rust
     pulseaudioFull # required for sway binds
     networkmanagerapplet # encludes bin/nm-applet

@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs-unstable; [
     eza
     nixd
+    home-manager
   ];
 
   fonts = {
