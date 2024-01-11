@@ -2,14 +2,18 @@
 
 {
   environment.systemPackages = with pkgs-unstable; [
+    home-manager # required for home-manager solo module
+    nixd # language server for nix files
     eza
-    nixd
-    home-manager
+    tor-browser
+    # alacritty
   ];
 
   fonts = {
     packages = with pkgs-unstable; [
-      nerdfonts
+      (nerdfonts.override {
+        fonts = [ "Iosevka" "Noto" ];
+      })
       iosevka
       # (callPackage ./custom/iosevka.nix {})
       (iosevka.override {

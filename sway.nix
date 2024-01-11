@@ -11,7 +11,7 @@
     # glib
     swaylock
     swayidle
-    swaybg
+    # swaybg
     slurp # screenshot pt1
     grim # screenshot pt2, the screenshot returns (to your ~/Pictures/Screenshots folder)
     wl-clipboard

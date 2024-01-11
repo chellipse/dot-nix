@@ -1,6 +1,6 @@
 {
 
-  description = "Flake-1";
+  description = "T480 NixOS Config";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11"; # Or just `nixpkgs` for the registry
@@ -11,7 +11,7 @@
   let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
-    FLAKE_DIR = "/home/chelll/dot-nix";
+    # FLAKE_DIR = "/home/chelll/dot-nix";
   in {
     nixosConfigurations = {
 

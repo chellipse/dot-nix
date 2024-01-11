@@ -3,9 +3,8 @@
 {
 
   programs = {
-    gnome-disks = {
-      enable = true;
-    };
+    gnome-disks.enable = true;
+    steam.enable = true;
   };
 
   services = {
@@ -17,12 +16,12 @@
     # variables = {
     # };
     systemPackages = with pkgs; [
-      anki
+      # anki
       dropbox # requires dropbox-cli for control
       dropbox-cli # used for dropbox
       calc
-      ffmpeg
-      qbittorrent
+      # ffmpeg
+      # qbittorrent
       # inkscape
       gimp-with-plugins
       # gnome2.pango
@@ -36,10 +35,10 @@
       ranger
       zathura
       cinnamon.nemo-with-extensions # files
-      alacritty # terminal :3
+      alacritty # terminal :3 (also in unstable.nix)
       kitty # terminal<3
       libnotify # includes notify-send
-      libwebp
+      # libwebp
     ];
   };
 

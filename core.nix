@@ -90,25 +90,42 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
-    chelll = {
-      isNormalUser = true;
-      description = "Chell";
-      extraGroups = [ "networkmanager" "wheel" ];
-      packages = with pkgs; [
-      ];
-    };
-    hello = {
-      isNormalUser = true;
-      description = "Hello";
-      extraGroups = [ "wheel" ];
-      packages = with pkgs; [
-        hello
-      ];
+  users = {
+    defaultUserShell = pkgs.bashInteractive;
+    users = {
+      root = {
+        packages = with pkgs; [];
+      };
+      chelll = {
+        isNormalUser = true;
+        description = "Chell";
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with pkgs; [];
+        shell = pkgs.bashInteractive;
+      };
+      browsing = {
+        isNormalUser = true;
+        description = "Web-browsing user";
+        extraGroups = [];
+        packages = with pkgs; [ firefox ];
+      };
+      hello = {
+        isNormalUser = true;
+        description = "Hello";
+        extraGroups = [ "wheel" ];
+        packages = with pkgs; [ hello ];
+      };
     };
   };
 
-  programs.htop.enable = true;
+  programs = {
+    htop.enable = true;
+    fish.enable = true;
+    bash.interactiveShellInit = ''
+      VERSION=$(nixos-version)
+      echo "NixOS: $VERSION"
+    '';
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -120,11 +137,11 @@ in
       FLAKE_DIR = "${./. + "/"}";
       FS_DIR = "${./. + "/scripts/"}";
       XDG_CONFIG_HOME = "$HOME/.config";
+      NIXOS_OZONE_WL = "1";
     };
     systemPackages = with pkgs; [
       vim # The Nano editor is also installed by default.
       git
-      firefox
       vivaldi
       signal-desktop
       discord
@@ -156,6 +173,7 @@ in
       # vimpc
       # mpdris2 # let's i3status-rust see mpd info
       # mpd-mpris
+      ntfs3g
     ];
   };
 
